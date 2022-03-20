@@ -19,10 +19,17 @@ export default function Tank({ data }) {
     <Layout>
       <Link href="/tank">
         <a>
-          <div class="w-24 border border-1 border-black">Go Back</div>
+          <div class="w-24 border border-1 border-black mb-10">Go Back</div>
         </a>
       </Link>
-      <div>{JSON.stringify(data)}</div>
+      <div>
+        <table>
+            <tr><td class='font-bold'>ID</td><td>{data.id}</td></tr>
+            <tr><td class='font-bold'>Size</td><td>{data.size}</td></tr>
+            <tr><td class='font-bold'>Type</td><td>{data.type}</td></tr>
+            <tr><td class='font-bold'>Size</td><td>{data.size}</td></tr>
+        </table>
+      </div>
     </Layout>
   );
 }

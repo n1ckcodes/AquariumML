@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: JSON.parse(data),
-    }, // will be passed to the page component as props
+    }
   };
 }
 
