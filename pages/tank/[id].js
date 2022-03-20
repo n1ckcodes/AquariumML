@@ -4,17 +4,26 @@ import Layout from "../../components/layout";
 export async function getServerSideProps(context) {
   const fs = require("fs");
   const { id } = context.query;
-  let data = fs.readFileSync("./data/tanks.json", "utf-8");
-  data = JSON.parse(data);
-  data = data.find((t) => t.id == id);
+  let tankData = fs.readFileSync("./data/tanks.json", "utf-8");
+  tankData = JSON.parse(tankData);
+  tankData = tankData.find((t) => t.id == id);
+
+  let maintenanceData = fs.readFileSync("./data/maintenance.json", "utf-8");
+  maintenanceData = JSON.parse(maintenanceData);
+  maintenanceData = maintenanceData.find((t) => t.tankId == id);
+
+ 
   return {
     props: {
-      data: data,
+      tankData: tankData,
+      maintenanceData: maintenanceData,
     },
   };
 }
 
-export default function Tank({ data }) {
+export default function Tank({ tankData, maintenanceData }) {
+  console.log(maintenanceData);
+
   return (
     <Layout>
       <Link href="/tank">
@@ -24,11 +33,30 @@ export default function Tank({ data }) {
       </Link>
       <div>
         <table>
-            <tr><td class='font-bold'>ID</td><td>{data.id}</td></tr>
-            <tr><td class='font-bold'>Size</td><td>{data.size}</td></tr>
-            <tr><td class='font-bold'>Type</td><td>{data.type}</td></tr>
-            <tr><td class='font-bold'>Size</td><td>{data.size}</td></tr>
+          <tr>
+            <td class="font-bold">ID:</td>
+            <td>{tankData.id}</td>
+          </tr>
+          <tr>
+            <td class="font-bold">Size:</td>
+            <td>{tankData.size}</td>
+          </tr>
+          <tr>
+            <td class="font-bold">Type</td>
+            <td>{tankData.type}</td>
+          </tr>
+          <tr>
+            <td class="font-bold">Size:</td>
+            <td>{tankData.size}</td>
+          </tr>
         </table>
+        <br />
+        <hr />
+        <br />
+        <h4>Events</h4>
+        {maintenanceData.events.map((md) => (
+          <div>{md.date} - {md.type}</div>
+        ))}
       </div>
     </Layout>
   );

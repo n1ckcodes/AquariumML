@@ -1,0 +1,27 @@
+[
+  {
+    "tankId": 1,
+    "events": [
+      {
+        "date": "3/20/2022",
+        "type": "Water Change",
+        "amount": "5gal"
+      },
+      {
+        "date": "3/20/2022",
+        "type": "Algae Scrape",
+        "amount": ""
+      }
+    ]
+  },
+  {
+    "tankId": 2,
+    "events": [
+        {
+          "date": "3/20/2022",
+          "type": "Added fertilizer",
+          "amount": "5 pumps"
+        }
+      ]
+  }
+]
