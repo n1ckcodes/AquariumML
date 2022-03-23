@@ -18,12 +18,15 @@ export default function NewTank() {
   const [gallons, setGallons] = useState(0);
 
   const formik = useFormik({
+    //These values need to be set with formik even if not used
     initialValues: {
-      email: "foobar@example.com",
-      password: "foobar",
+      size: "0",
+      name: "",
+      type: "",
+      location: "",
     },
-    validationSchema: validationSchema,
     onSubmit: (values) => {
+      console.log("here");
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -33,38 +36,67 @@ export default function NewTank() {
       <form onSubmit={formik.handleSubmit} class="m-10">
         <label class="label">Tank name</label>
         <input
+          name="name"
+          onChange={formik.handleChange}
+          value={formik.values.name}
           type="text"
-          placeholder="Type here"
+          placeholder="Nick's tank"
+          autoComplete="off"
           class="input input-bordered w-full max-w-xs"
+          required
         />
         <br />
         <br />
-        <label class="label">Tank Size (gallons): {gallons}</label>
+        <label class="label">Tank Size (gallons): {formik.values.size}</label>
         <input
+          name="size"
           type="range"
           min="0.5"
           max="500"
           step="0.25"
           value={gallons}
-          onChange={(e) => setGallons(e.target.value)}
-          class="range w-1/2"
+          onChange={formik.handleChange}
+          value={formik.values.size}
+          class="range w-1/6"
+          required
         ></input>
         <br />
         <br />
         <label class="label">Type</label>
-        <input
-          type="text"
-          placeholder="Type here"
-          class="input input-bordered w-full max-w-xs"
-        />
+        <select
+          class="select select-bordered w-full max-w-xs"
+          onChange={formik.handleChange}
+          value={formik.values.type}
+          name="type"
+          required
+        >
+          <option disabled selected>
+            Select a type
+          </option>
+          <option>Brackish</option>
+          <option>Freshwater - (Non planted) </option>
+          <option>Freshwater - Planted (C02) </option>
+          <option>Freshwater - Planted (Low tech) </option>
+          <option>Saltwater - FO</option>
+          <option>Saltwater - FOWLR</option>
+          <option>Saltwater - Reef</option>
+        </select>
         <br />
         <br />
         <label class="label">Location</label>
         <input
+          name="location"
           type="text"
           placeholder="Basement, office, etc..."
           class="input input-bordered w-full max-w-xs"
+          onChange={formik.handleChange}
+          value={formik.values.location}
+          autoComplete="off"
+          required
         />
+        <br />
+        <br />
+        <input type="submit" value="Submit" class="btn btn-wide" />
       </form>
     </Layout>
   );
