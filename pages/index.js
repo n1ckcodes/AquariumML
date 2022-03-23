@@ -26,9 +26,22 @@ export default function Home({ numTanks, totalGallons }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        =total # tanks {numTanks} =total gallons: {totalGallons}= =water changes
-        performed= <br />
-        ===recent activity=====
+        <div class="stats stats-vertical lg:stats-horizontal shadow">
+          <div class="stat">
+            <div class="stat-title"># Tanks</div>
+            <div class="stat-value">{numTanks}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-title"># Gallons</div>
+            <div class="stat-value">{totalGallons}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-title"># Gallons water changed</div>
+            <div class="stat-value">1,200</div>
+          </div>
+        </div>
       </Layout>
       <footer>
         <a
