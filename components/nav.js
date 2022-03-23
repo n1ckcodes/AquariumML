@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 export default function Nav() {
+  //TODO: see how to get rid of repition with tailwind styles
+
   const { pathname } = useRouter();
   return (
     <ul class={`border-r text-center h-full text-lg `}>
@@ -44,7 +46,18 @@ export default function Nav() {
               pathname == "/calendar" ? "bg-teal-700" : null
             }`}
           >
-            Tanks
+            Maintenance
+          </li>
+        </a>
+      </Link>
+      <Link href="#">
+        <a>
+          <li
+            class={`h-20 flex justify-center items-center hover:bg-teal-800   ${
+              pathname == "/calendar" ? "bg-teal-700" : null
+            }`}
+          >
+            Calendar
           </li>
         </a>
       </Link>

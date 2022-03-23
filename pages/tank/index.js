@@ -20,7 +20,7 @@ export default function Tanks({ tanks }) {
       <div>
         {tanks == undefined ? (
           <div>
-            <p>Looks like you havn't added any tanks yet. </p> <br />
+            <p>Looks like you havn't added any tanks yet.</p> <br />
           </div>
         ) : (
           <div class="grid grid-cols-3 gap-5 mr-10">

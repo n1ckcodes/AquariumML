@@ -2,17 +2,8 @@ import Link from "next/link";
 import Layout from "../../components/layout";
 
 export async function getServerSideProps(context) {
-  const fs = require("fs");
   const { id } = context.query;
-  let tankData = fs.readFileSync("./data/tanks.json", "utf-8");
-  tankData = JSON.parse(tankData);
-  tankData = tankData.find((t) => t.id == id);
 
-  let maintenanceData = fs.readFileSync("./data/maintenance.json", "utf-8");
-  maintenanceData = JSON.parse(maintenanceData);
-  maintenanceData = maintenanceData.find((t) => t.tankId == id);
-
- 
   return {
     props: {
       tankData: tankData,
@@ -55,7 +46,9 @@ export default function Tank({ tankData, maintenanceData }) {
         <br />
         <h4>Events</h4>
         {maintenanceData.events.map((md) => (
-          <div>{md.date} - {md.type}</div>
+          <div>
+            {md.date} - {md.type}
+          </div>
         ))}
       </div>
     </Layout>
