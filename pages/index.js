@@ -47,6 +47,10 @@ export default function Home({ numTanks, totalGallons }) {
             <div class="stat-title"># Gallons water changed</div>
             <div class="stat-value">1,200</div>
           </div>
+          <div class="stat">
+            <div class="stat-title">Types of tanks</div>
+            <div class="stat-value">4</div>
+          </div>
         </div>
         <br />
         <div class="divider"></div>
@@ -55,8 +59,8 @@ export default function Home({ numTanks, totalGallons }) {
           <Link href="/tank">
             <a>
               <div class="stat hover:bg-slate-300 hover:cursor-pointer">
-                <div class="stat-title"># Tanks</div>
-                <div class="stat-value">{numTanks}</div>
+                <div class="stat-title"># Fish</div>
+                <div class="stat-value">49</div>
               </div>
             </a>
           </Link>
