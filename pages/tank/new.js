@@ -7,6 +7,7 @@ export default function NewTank() {
     //These values need to be set with formik even if not used
     initialValues: {
       size: "0.25",
+      dateStarted: "",
       name: "",
       type: "",
       location: "",
@@ -85,6 +86,19 @@ export default function NewTank() {
           class="input input-bordered w-full max-w-xs"
           onChange={formik.handleChange}
           value={formik.values.location}
+          autoComplete="off"
+          required
+        />
+        <br />
+        <br />
+        <label class="label">Date Started</label>
+        <input
+          name="dateStarted"
+          type="date"
+          placeholder="ex: 1/24/22"
+          class="input input-bordered w-full max-w-xs"
+          onChange={formik.handleChange}
+          value={formik.values.dateStarted}
           autoComplete="off"
           required
         />

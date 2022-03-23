@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import Layout from "../components/layout";
 import { fetchGet } from "../utils/fetch";
 
@@ -27,11 +27,16 @@ export default function Home({ numTanks, totalGallons }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <h3 class="text-2xl font-bold">Tanks</h3>
+        <h3 class="text-2xl font-bold">Tanks </h3>
         <div class="stats stats-vertical lg:stats-horizontal shadow text-teal-400">
           <div class="stat hover:bg-slate-300 hover:cursor-pointer">
             <div class="stat-title"># Tanks</div>
             <div class="stat-value">{numTanks}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-title">Types of tanks</div>
+            <div class="stat-value">2</div>
           </div>
 
           <div class="stat">
@@ -48,15 +53,11 @@ export default function Home({ numTanks, totalGallons }) {
             <div class="stat-title"># Gallons water changed</div>
             <div class="stat-value">1,200</div>
           </div>
-          <div class="stat">
-            <div class="stat-title">Types of tanks</div>
-            <div class="stat-value">4</div>
-          </div>
         </div>
         <br />
         <div class="divider"></div>
         <h3 class="text-2xl font-bold">Fish</h3>
-        <div class="stats stats-vertical lg:stats-horizontal shadow">
+        <div class="stats stats-vertical lg:stats-horizontal shadow text-cyan-400">
           <Link href="/tank">
             <a>
               <div class="stat hover:bg-slate-300 hover:cursor-pointer">
