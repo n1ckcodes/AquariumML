@@ -28,7 +28,7 @@ export default function Home({ numTanks, totalGallons }) {
       </Head>
       <Layout>
         <h3 class="text-2xl font-bold">Tanks</h3>
-        <div class="stats stats-vertical lg:stats-horizontal shadow">
+        <div class="stats stats-vertical lg:stats-horizontal shadow text-teal-400">
           <div class="stat hover:bg-slate-300 hover:cursor-pointer">
             <div class="stat-title"># Tanks</div>
             <div class="stat-value">{numTanks}</div>
