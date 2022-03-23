@@ -31,9 +31,7 @@ handler.post("/api/tank/new", (req, res) => {
 
 handler.get("/api/tank/all", (req, res) => {
   return getTanks().then((response) => {
-    console.log("here lol");
-    console.log(response);
-    return res.json(response);
+    return res.send(response);
   });
 });
 

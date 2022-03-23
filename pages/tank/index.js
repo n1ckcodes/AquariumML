@@ -5,9 +5,10 @@ import { fetchGet } from "../../utils/fetch";
 
 export async function getServerSideProps(context) {
   const tanks = await fetchGet("http://localhost:3000/api/tank/all");
+  console.log(tanks);
   return {
     props: {
-      data: [...tanks],
+      tanks: tanks,
     },
   };
 }
@@ -25,7 +26,7 @@ export default function Tanks({ tanks }) {
           </div>
         ) : (
           <div class="grid grid-cols-3 gap-0">
-            {data.map((t) => (
+            {tanks.map((t) => (
               <TankThumbnail {...t} />
             ))}
           </div>
