@@ -3,10 +3,9 @@ import TankThumbnail from "../../components/tanks/thumbnail";
 import ToolBar from "../../components/tanks/toolbar";
 
 export async function getServerSideProps(context) {
-  const { getAllTanks } = require("../api/db/tankQueries");
-  const test = await getAllTanks();
-  console.log("-----");
-  console.log(test);
+  await fetch("http://localhost:3000/api/test").then((res) => {
+    console.log(res.json);
+  });
   return {
     props: {
       data: [],
