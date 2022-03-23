@@ -1,21 +1,23 @@
 import Layout from "../../components/layout";
 import TankThumbnail from "../../components/tanks/thumbnail";
+import ToolBar from "../../components/tanks/toolbar";
 
 export async function getServerSideProps(context) {
-  const fs = require("fs");
-  let data = fs.readFileSync("./data/tanks.json", "utf-8");
-
+  const { getAllTanks } = require("../api/db/tankQueries");
+  const test = await getAllTanks();
+  console.log("-----");
+  console.log(test);
   return {
     props: {
-      data: JSON.parse(data),
+      data: [],
     },
   };
 }
 
 export default function Tanks({ data }) {
-  console.log(data);
   return (
     <Layout>
+      <ToolBar />
       <div>
         {data == undefined ? (
           <div>
