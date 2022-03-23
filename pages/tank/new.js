@@ -1,39 +1,33 @@
 import { useFormik } from "formik";
-import * as yup from "yup";
 import Layout from "../../components/layout";
-import { useState } from "react";
-
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-});
+import { fetchPost } from "../../utils/fetch";
 
 export default function NewTank() {
-  const [gallons, setGallons] = useState(0);
-
   const formik = useFormik({
     //These values need to be set with formik even if not used
     initialValues: {
-      size: "0",
+      size: "0.25",
       name: "",
       type: "",
       location: "",
     },
     onSubmit: (values) => {
       console.log("here");
-      alert(JSON.stringify(values, null, 2));
+      fetchPost(
+        "http://localhost:3000/api/tank/new",
+        JSON.stringify(values)
+      ).then((res) => {
+        alert(res);
+      });
+      //  alert(JSON.stringify(values, null, 2));
     },
   });
 
   return (
     <Layout>
       <form onSubmit={formik.handleSubmit} class="m-10">
+        <h3 class="text-2xl underline">Add new tank</h3>
+        <div class="divider"></div>
         <label class="label">Tank name</label>
         <input
           name="name"
@@ -51,10 +45,10 @@ export default function NewTank() {
         <input
           name="size"
           type="range"
-          min="0.5"
+          min="0.25"
           max="500"
           step="0.25"
-          value={gallons}
+          value={formik.values.size}
           onChange={formik.handleChange}
           value={formik.values.size}
           class="range w-1/6"
