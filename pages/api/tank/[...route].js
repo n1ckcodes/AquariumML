@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { createTank } from "../db/tankQueries";
+import { createTank, getTanks } from "../db/tankQueries";
 
 const handler = nc({
   attachParams: true,
@@ -26,6 +26,14 @@ handler.post("/api/tank/new", (req, res) => {
   }
   return createTank(name, size, type, location).then(() => {
     return res.status(201).send("Tank added successfully");
+  });
+});
+
+handler.get("/api/tank/all", (req, res) => {
+  return getTanks().then((response) => {
+    console.log("here lol");
+    console.log(response);
+    return res.json(response);
   });
 });
 

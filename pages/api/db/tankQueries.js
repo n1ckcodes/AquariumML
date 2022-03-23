@@ -7,6 +7,11 @@ const createTank = (name, size, type, location) => {
   );
 };
 
+const getTanks = () => {
+  return db.any(`SELECT * from "Tank"`, []);
+};
+
 module.exports = {
   createTank,
+  getTanks,
 };

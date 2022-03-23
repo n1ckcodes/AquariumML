@@ -1,24 +1,24 @@
 import Layout from "../../components/layout";
 import TankThumbnail from "../../components/tanks/thumbnail";
 import ToolBar from "../../components/tanks/toolbar";
+import { fetchGet } from "../../utils/fetch";
 
 export async function getServerSideProps(context) {
-  await fetch("http://localhost:3000/api/test").then((res) => {
-    console.log(res.json);
-  });
+  const tanks = await fetchGet("http://localhost:3000/api/tank/all");
   return {
     props: {
-      data: [],
+      data: [...tanks],
     },
   };
 }
 
-export default function Tanks({ data }) {
+export default function Tanks({ tanks }) {
+  console.log(tanks);
   return (
     <Layout>
       <ToolBar />
       <div>
-        {data == undefined ? (
+        {tanks == undefined ? (
           <div>
             <p>Looks like you havn't added any tanks yet. </p> <br />
             <p>Add now?</p>
