@@ -29,18 +29,19 @@ export default function Home({ numTanks, totalGallons }) {
       <Layout>
         <h3 class="text-2xl font-bold">Tanks</h3>
         <div class="stats stats-vertical lg:stats-horizontal shadow">
-          <Link href="/tank">
-            <a>
-              <div class="stat hover:bg-slate-300 hover:cursor-pointer">
-                <div class="stat-title"># Tanks</div>
-                <div class="stat-value">{numTanks}</div>
-              </div>
-            </a>
-          </Link>
+          <div class="stat hover:bg-slate-300 hover:cursor-pointer">
+            <div class="stat-title"># Tanks</div>
+            <div class="stat-value">{numTanks}</div>
+          </div>
 
           <div class="stat">
             <div class="stat-title"># Gallons</div>
             <div class="stat-value">{totalGallons}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-title">Oldest tank</div>
+            <div class="stat-value">6 years</div>
           </div>
 
           <div class="stat">
