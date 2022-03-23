@@ -17,7 +17,7 @@ export default function NewTank() {
         "http://localhost:3000/api/tank/new",
         JSON.stringify(values)
       ).then((res) => {
-        alert(res);
+        alert("tank has been added");
       });
       //  alert(JSON.stringify(values, null, 2));
     },

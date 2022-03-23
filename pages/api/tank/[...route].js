@@ -25,7 +25,7 @@ handler.post("/api/tank/new", (req, res) => {
     return;
   }
   return createTank(name, size, type, location).then(() => {
-    return res.sendStatus(201);
+    return res.status(201).send("Tank added successfully");
   });
 });
 
