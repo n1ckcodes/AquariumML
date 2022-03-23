@@ -4,7 +4,7 @@ import ToolBar from "../../components/tanks/toolbar";
 import { fetchGet } from "../../utils/fetch";
 
 export async function getServerSideProps(context) {
-  const tanks = await fetchGet("http://localhost:3000/api/tank/all");
+  const tanks = await fetchGet(`${process.env.APP_URL}/api/tank/all`);
   console.log(tanks);
   return {
     props: {
@@ -27,7 +27,7 @@ export default function Tanks({ tanks }) {
         ) : (
           <div class="grid grid-cols-3 gap-0">
             {tanks.map((t) => (
-              <TankThumbnail {...t} />
+              <TankThumbnail key={t.id} {...t} />
             ))}
           </div>
         )}

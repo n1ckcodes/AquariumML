@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 import { fetchGet } from "../utils/fetch";
 
 export async function getServerSideProps(context) {
-  const tanks = await fetchGet("http://localhost:3000/api/tank/all");
+  const tanks = await fetchGet(`${process.env.APP_URL}/api/tank/all`);
 
   let totalGallons = 0;
   tanks.map((t) => {
@@ -18,7 +18,6 @@ export async function getServerSideProps(context) {
   };
 }
 export default function Home({ numTanks, totalGallons }) {
-  console.log(numTanks);
   return (
     <div class="h-full">
       <Head>
