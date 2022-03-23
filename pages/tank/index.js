@@ -14,7 +14,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Tanks({ tanks }) {
-  console.log(tanks);
   return (
     <Layout>
       <ToolBar />
@@ -22,7 +21,6 @@ export default function Tanks({ tanks }) {
         {tanks == undefined ? (
           <div>
             <p>Looks like you havn't added any tanks yet. </p> <br />
-            <p>Add now?</p>
           </div>
         ) : (
           <div class="grid grid-cols-3 gap-0">
