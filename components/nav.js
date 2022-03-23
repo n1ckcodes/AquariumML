@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 export default function Nav() {
   const { pathname } = useRouter();
   return (
-    <ul class={`border-r text-center h-full $`}>
+    <ul class={`border-r text-center h-full text-lg`}>
       <Link href="/">
         <a>
           <li

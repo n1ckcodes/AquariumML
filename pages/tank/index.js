@@ -23,7 +23,7 @@ export default function Tanks({ tanks }) {
             <p>Looks like you havn't added any tanks yet. </p> <br />
           </div>
         ) : (
-          <div class="grid grid-cols-3 gap-0">
+          <div class="grid grid-cols-3 gap-5 mr-10">
             {tanks.map((t) => (
               <TankThumbnail key={t.id} {...t} />
             ))}
