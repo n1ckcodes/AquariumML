@@ -6,7 +6,7 @@ export default function TankThumbnail(props) {
       <Link href={`/tank/${props.id}`}>
         <a>
           <div class="w-full border rounded-lg inline-block border-1 border-black hover:cursor-pointer p-5 hover:bg-teal-700">
-            <h4 class="text-xl font-bold">{props.Name}</h4>
+            <h4 class="text-xl font-bold underline mb-3">{props.Name}</h4>
             <p>Gallons: {props.Size}</p>
             <p>Type: {props.Type}</p>
             <p># Fish: 5</p>
