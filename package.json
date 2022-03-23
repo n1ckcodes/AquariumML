@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "daisyui": "^2.11.1",
+    "formik": "^2.2.9",
     "mysql2": "^2.3.3",
     "next": "12.1.0",
     "next-connect": "^0.12.2",
     "pg-promise": "^10.11.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
