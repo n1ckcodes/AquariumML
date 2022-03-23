@@ -1,7 +1,24 @@
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/layout";
-export default function Home() {
+import { fetchGet } from "../utils/fetch";
+
+export async function getServerSideProps(context) {
+  const tanks = await fetchGet("http://localhost:3000/api/tank/all");
+
+  let totalGallons = 0;
+  tanks.map((t) => {
+    totalGallons += Number(t.Size);
+  });
+  return {
+    props: {
+      numTanks: tanks.length,
+      totalGallons: totalGallons,
+    },
+  };
+}
+export default function Home({ numTanks, totalGallons }) {
+  console.log(numTanks);
   return (
     <div class="h-full">
       <Head>
@@ -10,7 +27,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        =total # tanks= =total gallons= =water changes performed= <br />
+        =total # tanks {numTanks} =total gallons: {totalGallons}= =water changes
+        performed= <br />
         ===recent activity=====
       </Layout>
       <footer>
