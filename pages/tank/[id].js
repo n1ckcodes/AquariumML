@@ -46,6 +46,29 @@ export default function Tank({ tankData, maintenanceData }) {
         <hr />
         <br />
         <h4>Events</h4>
+        <div class="overflow-x-auto">
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Desc</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hover">
+        <th>1/1/2022</th>
+        <td>25% water change</td>
+        <td>fish looked happy</td>
+      </tr>
+      <tr class="hover">
+        <th>12/31/2021</th>
+        <td>Added 5 pumps fertiziler</td>
+        <td>Plants not looking great</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
         {maintenanceData.events.map((md) => (
           <div>
             {md.date} - {md.type}
