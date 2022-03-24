@@ -1,9 +1,9 @@
 import { db } from "./dbConfig";
 
-const createTank = (name, size, type, location) => {
+const createTank = (name, size, type, location, dateStarted) => {
   return db.query(
-    `INSERT INTO "Tank"("UserID", "Name", "Size", "Type", "Location") VALUES(1, $1, $2, $3, $4)`,
-    [name, size, type, location]
+    `INSERT INTO "Tank"("UserID", "Name", "Size", "Type", "Location", "DateStarted") VALUES(1, $1, $2, $3, $4, $5)`,
+    [name, size, type, location, dateStarted]
   );
 };
 

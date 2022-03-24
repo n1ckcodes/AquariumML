@@ -1,5 +1,6 @@
 import nc from "next-connect";
 import { createTank, getTanks, getTankById } from "../db/tankQueries";
+import dayjs from "dayjs";
 
 const handler = nc({
   attachParams: true,
@@ -15,16 +16,18 @@ const handler = nc({
 
 //GET article by ID
 handler.post("/api/tank/new", (req, res) => {
-  const { name, size, type, location } = req.body;
+  const { name, size, type, location, dateStarted } = req.body;
+  //dateStarted = dayjs(dateStarted).format('yyyy-mm-dd')
   if (
     name == undefined ||
     size == undefined ||
     type == undefined ||
-    location == undefined
+    location == undefined ||
+    dateStarted == undefined
   ) {
     return;
   }
-  return createTank(name, size, type, location).then(() => {
+  return createTank(name, size, type, location, dateStarted).then(() => {
     return res.status(201).send("Tank added successfully");
   });
 });
