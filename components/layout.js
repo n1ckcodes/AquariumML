@@ -11,7 +11,7 @@ export default function Layout({ children }) {
           <Nav />
         </nav>
 
-        <div class="pl-10 col-span-10">{children}</div>
+        <div class="pl-10 col-span-10 mt-5">{children}</div>
       </div>
     </div>
   );

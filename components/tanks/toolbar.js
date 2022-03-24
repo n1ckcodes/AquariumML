@@ -5,7 +5,7 @@ export default function ToolBar() {
     <>
       <Link href="/tank/new">
         <a>
-          <div class="">Add new</div>
+        <button class="btn btn-wide btn-outline">Add new</button>
         </a>
       </Link>
       <div class="divider"></div>
