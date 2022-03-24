@@ -1,19 +1,20 @@
 import Link from "next/link";
 import Layout from "../../components/layout";
+import { fetchGet } from "../../utils/fetch";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-
+  const tankData = await fetchGet(`${process.env.APP_URL}/api/tank/${id}`)
   return {
     props: {
       tankData: tankData,
-      maintenanceData: maintenanceData,
+      maintenanceData: {events: [{type: 1, date: "12/12/12"}]},
     },
   };
 }
 
 export default function Tank({ tankData, maintenanceData }) {
-  console.log(maintenanceData);
+ 
 
   return (
     <Layout>
@@ -26,19 +27,19 @@ export default function Tank({ tankData, maintenanceData }) {
         <table>
           <tr>
             <td class="font-bold">ID:</td>
-            <td>{tankData.id}</td>
+            <td>{tankData.TankID}</td>
           </tr>
           <tr>
             <td class="font-bold">Size:</td>
-            <td>{tankData.size}</td>
+            <td>{tankData.Size}</td>
           </tr>
           <tr>
             <td class="font-bold">Type</td>
-            <td>{tankData.type}</td>
+            <td>{tankData.Type}</td>
           </tr>
           <tr>
             <td class="font-bold">Size:</td>
-            <td>{tankData.size}</td>
+            <td>{tankData.Size}</td>
           </tr>
         </table>
         <br />

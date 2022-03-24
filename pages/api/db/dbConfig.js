@@ -5,7 +5,7 @@ const pgp = require("pg-promise")({
 const config = {
   max: 30,
   connectionString:
-    process.env.DB_URI || "postgres://postgres:root@localhost:5432/aqml",
+    process.env.DB_URI || "postgres://localhost:5432/aqml",
   ssl: process.env.DB_URI ? true : false,
 };
 

@@ -11,7 +11,19 @@ const getTanks = () => {
   return db.any(`SELECT * from "Tank"`, []);
 };
 
+const getTankById = (id) => {
+  try {
+    return db.one(
+      `SELECT * from "Tank" WHERE "TankID" = $1`,
+      [id]
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 module.exports = {
   createTank,
   getTanks,
+  getTankById
 };
