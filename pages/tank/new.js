@@ -26,9 +26,7 @@ export default function NewTank() {
 
   return (
     <Layout>
-      <form onSubmit={formik.handleSubmit} class="m-10">
-        <h3 class="text-2xl underline">Add new tank</h3>
-        <div class="divider"></div>
+      <form onSubmit={formik.handleSubmit}>
         <label class="label">Tank name</label>
         <input
           name="name"
@@ -51,7 +49,6 @@ export default function NewTank() {
           step="0.25"
           value={formik.values.size}
           onChange={formik.handleChange}
-          value={formik.values.size}
           class="range w-1/6"
           required
         ></input>
@@ -104,7 +101,7 @@ export default function NewTank() {
         />
         <br />
         <br />
-        <input type="submit" value="Submit" class="btn btn-wide" />
+        <input type="submit" value="Add" class="btn btn-wide btn-outline" />
       </form>
     </Layout>
   );

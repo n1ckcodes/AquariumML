@@ -10,6 +10,7 @@ export default function TankThumbnail(props) {
             <p>Gallons: {props.Size}</p>
             <p>Type: {props.Type}</p>
             <p># Fish: 5</p>
+            <p>Last water change: 1/2/2</p>
           </div>
         </a>
       </Link>
