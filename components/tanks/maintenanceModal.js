@@ -1,25 +1,23 @@
 import { useFormik } from "formik";
-import { useState } from "react";
 import dayjs from "dayjs";
+import { fetchPost } from "../../utils/fetch";
 
-export default function MaintenanceModal() {
-  const [eventType, setEventType] = useState("");
-
+export default function MaintenanceModal(props) {
   const currentDate = dayjs(dayjs(), "MM/DD/YYYY");
   const formik = useFormik({
     //These values need to be set with formik even if not used
     initialValues: {
-      size: "0.25",
+      tankID: props.tankID,
       date: dayjs().format("YYYY-MM-DD"),
-      name: "",
       type: "Select a type",
       waterAmt: 0,
       fertilizerAmt: 0,
+      comments: "",
     },
     onSubmit: (values) => {
       console.log("here");
       fetchPost(
-        "http://localhost:3000/api/tank/new",
+        "http://localhost:3000/api/event/new",
         JSON.stringify(values)
       ).then((res) => {
         alert("tank has been added");
@@ -55,6 +53,13 @@ export default function MaintenanceModal() {
               class="input input-bordered w-full max-w-xs"
               onChange={formik.handleChange}
               value={formik.values.date}
+              autoComplete="off"
+              required
+            />
+            <input
+              name="tankID"
+              type="hidden"
+              value={formik.values.tankID}
               autoComplete="off"
               required
             />
@@ -113,7 +118,12 @@ export default function MaintenanceModal() {
             ) : null}
 
             <label class="label">Comments</label>
-            <textarea class="textarea textarea-bordered h-24  w-full max-w-xs"></textarea>
+            <textarea
+              name="comments"
+              onChange={formik.handleChange}
+              value={formik.values.comments}
+              class="textarea textarea-bordered h-24  w-full max-w-xs"
+            ></textarea>
             <br />
             <br />
             <br />

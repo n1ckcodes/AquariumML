@@ -14,7 +14,6 @@ const handler = nc({
   },
 });
 
-//GET article by ID
 handler.post("/api/tank/new", (req, res) => {
   const { name, size, type, location, dateStarted } = req.body;
   //dateStarted = dayjs(dateStarted).format('yyyy-mm-dd')
@@ -39,7 +38,7 @@ handler.get("/api/tank/all", (req, res) => {
 });
 
 handler.get("/api/tank/:id", (req, res) => {
-  const {id} = req.params 
+  const { id } = req.params;
   return getTankById(id).then((response) => {
     return res.send(response);
   });

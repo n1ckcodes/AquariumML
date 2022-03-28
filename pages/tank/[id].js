@@ -16,27 +16,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Tank({ tankData, maintenanceData }) {
-  const formik = useFormik({
-    //These values need to be set with formik even if not used
-    initialValues: {
-      size: "0.25",
-      dateStarted: "",
-      name: "",
-      type: "",
-      location: "",
-    },
-    onSubmit: (values) => {
-      console.log("here");
-      fetchPost(
-        "http://localhost:3000/api/tank/new",
-        JSON.stringify(values)
-      ).then((res) => {
-        alert("tank has been added");
-      });
-      //  alert(JSON.stringify(values, null, 2));
-    },
-  });
-
   return (
     <Layout>
       <Link href="/tank">
@@ -68,7 +47,7 @@ export default function Tank({ tankData, maintenanceData }) {
         <hr />
         <br />
         <br />
-        <MaintenanceModal />
+        <MaintenanceModal tankID={tankData.TankID} />
         <h4>Events</h4>
         <div class="overflow-x-auto">
           <table class="table w-full">
