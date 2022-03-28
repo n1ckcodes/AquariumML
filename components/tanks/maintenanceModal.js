@@ -1,9 +1,12 @@
+import { useEffect, useState, useCallback } from "react";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
 import { fetchPost } from "../../utils/fetch";
 
 export default function MaintenanceModal(props) {
-  const currentDate = dayjs(dayjs(), "MM/DD/YYYY");
+  const [, updateState] = useState();
+  const [modalToggle, setModalToggle] = useState("modal modal-toggle");
+  const forceUpdate = useCallback(() => updateState({}), []);
   const formik = useFormik({
     //These values need to be set with formik even if not used
     initialValues: {
@@ -20,9 +23,9 @@ export default function MaintenanceModal(props) {
         "http://localhost:3000/api/event/new",
         JSON.stringify(values)
       ).then((res) => {
-        alert("tank has been added");
+        //TODO: quick and dirty for clearing modal vals. need to come back and replace this
+        window.location.reload();
       });
-      //  alert(JSON.stringify(values, null, 2));
     },
   });
   return (
@@ -33,7 +36,7 @@ export default function MaintenanceModal(props) {
       </label>
       <br />
       <br />
-      <input type="checkbox" id="addModal" class="modal-toggle" />
+      <input type="checkbox" id="addModal" class={`${modalToggle}`} />
       <div class="modal">
         <div class="modal-box relative">
           <label
