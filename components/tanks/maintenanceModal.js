@@ -12,8 +12,9 @@ export default function MaintenanceModal() {
       size: "0.25",
       date: dayjs().format("YYYY-MM-DD"),
       name: "",
-      type: "",
-      amount: "",
+      type: "Select a type",
+      waterAmt: 0,
+      fertilizerAmt: 0,
     },
     onSubmit: (values) => {
       console.log("here");
@@ -67,9 +68,10 @@ export default function MaintenanceModal() {
               name="type"
               required
             >
-              <option disabled selected>
+              <option disabled value="Select a type">
                 Select a type
               </option>
+              <option>Add fertilizer</option>
               <option>Cleaned glass</option>
               <option>Water change</option>
             </select>
@@ -79,12 +81,29 @@ export default function MaintenanceModal() {
               <>
                 <label class="label">Amount (gallons)</label>
                 <input
-                  name="amount"
+                  name="waterAmt"
                   type="number"
                   min={0}
                   class="input input-bordered w-full max-w-xs"
                   onChange={formik.handleChange}
-                  value={formik.values.amount}
+                  value={formik.values.waterAmt}
+                  autoComplete="off"
+                  required
+                />
+                <br />
+                <br />
+              </>
+            ) : null}
+            {formik.values.type == "Add fertilizer" ? (
+              <>
+                <label class="label">Fertilizer amount added (pumps)</label>
+                <input
+                  name="fertilizerAmt"
+                  type="number"
+                  min={0}
+                  class="input input-bordered w-full max-w-xs"
+                  onChange={formik.handleChange}
+                  value={formik.values.fertilizerAmt}
                   autoComplete="off"
                   required
                 />
