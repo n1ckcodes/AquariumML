@@ -15,7 +15,7 @@ export default function NewTank() {
     onSubmit: (values) => {
       console.log("here");
       fetchPost(
-        "http://localhost:3000/api/tank/new",
+        `${process.env.APP_URL}/api/tank/new`,
         JSON.stringify(values)
       ).then((res) => {
         alert("tank has been added");

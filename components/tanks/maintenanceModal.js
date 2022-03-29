@@ -24,7 +24,7 @@ export default function MaintenanceModal(props) {
     onSubmit: (values, actions) => {
       console.log("here");
       fetchPost(
-        "http://localhost:3000/api/event/new",
+        `${process.env.APP_URL}/api/event/new`,
         JSON.stringify(values)
       ).then((res) => {
         alert("Event added");
