@@ -1,11 +1,15 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
 import { fetchPost } from "../../utils/fetch";
 
 export default function MaintenanceModal(props) {
   const [, updateState] = useState();
-  const [modalToggle, setModalToggle] = useState("modal modal-toggle");
+
+  const modalToggle = useRef(null);
+  const toggleModal = () => {
+    modalToggle.current.click();
+  };
   const forceUpdate = useCallback(() => updateState({}), []);
   const formik = useFormik({
     //These values need to be set with formik even if not used
@@ -17,14 +21,16 @@ export default function MaintenanceModal(props) {
       fertilizerAmt: 0,
       comments: "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, actions) => {
       console.log("here");
       fetchPost(
         "http://localhost:3000/api/event/new",
         JSON.stringify(values)
       ).then((res) => {
+        alert("Event added");
+        toggleModal();
         //TODO: quick and dirty for clearing modal vals. need to come back and replace this
-        window.location.reload();
+        actions.resetForm();
       });
     },
   });
@@ -36,7 +42,12 @@ export default function MaintenanceModal(props) {
       </label>
       <br />
       <br />
-      <input type="checkbox" id="addModal" class={`${modalToggle}`} />
+      <input
+        type="checkbox"
+        id="addModal"
+        ref={modalToggle}
+        class={`modal modal-toggle`}
+      />
       <div class="modal">
         <div class="modal-box relative">
           <label
