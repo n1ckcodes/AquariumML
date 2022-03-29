@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import Link from "next/link";
-import { useFormik } from "formik";
+import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import { fetchGet } from "../../utils/fetch";
 import MaintenanceModal from "../../components/tanks/maintenanceModal";
@@ -7,15 +9,27 @@ import MaintenanceModal from "../../components/tanks/maintenanceModal";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const tankData = await fetchGet(`${process.env.APP_URL}/api/tank/${id}`);
+  const eventData = await fetchGet(
+    `${process.env.APP_URL}/api/event/tank/${id}`
+  );
   return {
     props: {
       tankData: tankData,
-      maintenanceData: { events: [{ type: 1, date: "12/12/12" }] },
+      eventData: eventData,
     },
   };
 }
 
-export default function Tank({ tankData, maintenanceData }) {
+export default function Tank({ tankData, eventData }) {
+  const router = useRouter();
+  const [reload, setReload] = useState(false);
+
+  const triggerRerender = () => {
+    //This will allow us to refresh the server side props and do a true SSR rerender
+    router.replace(router.asPath);
+  };
+
+  useEffect(() => {}, [reload]);
   return (
     <Layout>
       <Link href="/tank">
@@ -47,7 +61,7 @@ export default function Tank({ tankData, maintenanceData }) {
         <hr />
         <br />
         <br />
-        <MaintenanceModal tankID={tankData.TankID} />
+        <MaintenanceModal tankID={tankData.TankID} callBack={triggerRerender} />
         <h4>Events</h4>
         <div class="overflow-x-auto">
           <table class="table w-full">
@@ -55,20 +69,19 @@ export default function Tank({ tankData, maintenanceData }) {
               <tr>
                 <th>Date</th>
                 <th>Desc</th>
+                <th>Amount</th>
                 <th>Comments</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="hover">
-                <th>1/1/2022</th>
-                <td>25% water change</td>
-                <td>fish looked happy</td>
-              </tr>
-              <tr class="hover">
-                <th>12/31/2021</th>
-                <td>Added 5 pumps fertiziler</td>
-                <td>Plants not looking great</td>
-              </tr>
+              {eventData.map((t) => (
+                <tr class="hover">
+                  <th>{dayjs(t.EventDate).format("MM/DD/YYYY")}</th>
+                  <td>{t.Type}</td>
+                  <td>{t.WaterChgAmt}</td>
+                  <td>{t.Comments}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

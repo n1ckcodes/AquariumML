@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
 import { fetchPost } from "../../utils/fetch";
 
 export default function MaintenanceModal(props) {
-  const [, updateState] = useState();
-
+  console.log(process.env.APP_URL);
   const modalToggle = useRef(null);
   const toggleModal = () => {
     modalToggle.current.click();
   };
-  const forceUpdate = useCallback(() => updateState({}), []);
+
+  useEffect(() => {}, []);
   const formik = useFormik({
     //These values need to be set with formik even if not used
     initialValues: {
@@ -24,11 +24,12 @@ export default function MaintenanceModal(props) {
     onSubmit: (values, actions) => {
       console.log("here");
       fetchPost(
-        `${process.env.APP_URL}/api/event/new`,
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/event/new`,
         JSON.stringify(values)
       ).then((res) => {
         alert("Event added");
         toggleModal();
+        props.callBack(true);
         //TODO: quick and dirty for clearing modal vals. need to come back and replace this
         actions.resetForm();
       });

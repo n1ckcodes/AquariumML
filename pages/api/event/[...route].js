@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { addEvent } from "../db/eventQueries";
+import { addEvent, getEventsByTankID } from "../db/eventQueries";
 import dayjs from "dayjs";
 
 const handler = nc({
@@ -25,6 +25,13 @@ handler.post("/api/event/new", (req, res) => {
       return res.status(201).send("Event added successfully");
     }
   );
+});
+
+handler.get("/api/event/tank/:id", (req, res) => {
+  const { id } = req.params;
+  return getEventsByTankID(id).then((response) => {
+    return res.send(response);
+  });
 });
 
 //TODO: set up default route handling

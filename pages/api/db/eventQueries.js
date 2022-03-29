@@ -14,6 +14,18 @@ const addEvent = (
   );
 };
 
+const getEventsByTankID = (tankID) => {
+  try {
+    return db.any(
+      `SELECT * from "Event" WHERE "TankID" = $1 ORDER BY "EventDate" DESC`,
+      [tankID]
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 module.exports = {
   addEvent,
+  getEventsByTankID,
 };
