@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/layout";
 import { fetchGet } from "../../utils/fetch";
 import MaintenanceModal from "../../components/tanks/maintenanceModal";
@@ -71,6 +73,7 @@ export default function Tank({ tankData, eventData }) {
                 <th>Desc</th>
                 <th>Amount</th>
                 <th>Comments</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +83,11 @@ export default function Tank({ tankData, eventData }) {
                   <td>{t.Type}</td>
                   <td>{t.WaterChgAmt}</td>
                   <td>{t.Comments}</td>
+                  <td>
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                    &nbsp;&nbsp;
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </td>
                 </tr>
               ))}
             </tbody>
