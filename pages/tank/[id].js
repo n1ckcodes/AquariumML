@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/layout";
 import { fetchGet } from "../../utils/fetch";
-import MaintenanceModal from "../../components/tanks/maintenanceModal";
+import MaintenanceModal from "../../components/modals/maintenanceModal";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -22,16 +22,19 @@ export async function getServerSideProps(context) {
   };
 }
 
+const deleteEventById = (id) => {
+  console.log(`id is ${id}`);
+};
+
 export default function Tank({ tankData, eventData }) {
+  useEffect(() => {});
   const router = useRouter();
-  const [reload, setReload] = useState(false);
 
   const triggerRerender = () => {
     //This will allow us to refresh the server side props and do a true SSR rerender
     router.replace(router.asPath);
   };
 
-  useEffect(() => {}, [reload]);
   return (
     <Layout>
       <Link href="/tank">
@@ -63,6 +66,7 @@ export default function Tank({ tankData, eventData }) {
         <hr />
         <br />
         <br />
+
         <MaintenanceModal tankID={tankData.TankID} callBack={triggerRerender} />
         <h4>Events</h4>
         <div class="overflow-x-auto">
@@ -84,9 +88,17 @@ export default function Tank({ tankData, eventData }) {
                   <td>{t.WaterChgAmt}</td>
                   <td>{t.Comments}</td>
                   <td>
-                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      id={t.EventID}
+                      onClick={(e) => editEventByID(t.EventID)}
+                    />
                     &nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faTrashCan} />
+                    <FontAwesomeIcon
+                      id={t.EventID}
+                      icon={faTrashCan}
+                      onClick={(e) => deleteEventById(t.EventID)}
+                    />
                   </td>
                 </tr>
               ))}
