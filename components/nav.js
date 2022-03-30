@@ -17,28 +17,7 @@ export default function Nav() {
           </li>
         </a>
       </Link>
-      <Link href="/tank">
-        <a>
-          <li
-            class={`h-20 flex justify-center items-center hover:bg-teal-800   ${
-              pathname == "/tank" ? "bg-teal-700" : null
-            }`}
-          >
-            Tanks
-          </li>
-        </a>
-      </Link>
-      <Link href="#">
-        <a>
-          <li
-            class={`h-20 flex justify-center items-center hover:bg-teal-800   ${
-              pathname == "/fish" ? "bg-teal-700" : null
-            }`}
-          >
-            Fish
-          </li>
-        </a>
-      </Link>
+
       <Link href="#">
         <a>
           <li
@@ -58,6 +37,17 @@ export default function Nav() {
             }`}
           >
             Calendar
+          </li>
+        </a>
+      </Link>
+      <Link href="/stats" disabled>
+        <a>
+          <li
+            class={`h-20 flex justify-center items-center hover:bg-teal-800   ${
+              pathname == "/stats" ? "bg-teal-700" : null
+            }`}
+          >
+            Stats
           </li>
         </a>
       </Link>

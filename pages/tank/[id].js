@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/layout";
 import { fetchGet } from "../../utils/fetch";
-import MaintenanceModal from "../../components/modals/maintenanceModal";
+import MaintenanceModal from "../../components/modals/addMaintenance";
+import ConfirmDelete from "../../components/modals/confirmDelete";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -23,7 +24,7 @@ export async function getServerSideProps(context) {
 }
 
 const deleteEventById = (id) => {
-  console.log(`id is ${id}`);
+  <ConfirmDelete />;
 };
 
 export default function Tank({ tankData, eventData }) {
@@ -39,7 +40,7 @@ export default function Tank({ tankData, eventData }) {
     <Layout>
       <Link href="/tank">
         <a>
-          <div class="w-24 border border-1 border-black mb-10">Go Back</div>
+          <div class="btn btn-wide btn-outlin">Go Back</div>
         </a>
       </Link>
 
