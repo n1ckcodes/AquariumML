@@ -69,43 +69,6 @@ export default function Tank({ tankData, eventData }) {
         <br />
 
         <MaintenanceModal tankID={tankData.TankID} callBack={triggerRerender} />
-        <h4>Events</h4>
-        <div class="overflow-x-auto">
-          <table class="table w-full">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Desc</th>
-                <th>Amount</th>
-                <th>Comments</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {eventData.map((t) => (
-                <tr class="hover">
-                  <th>{dayjs(t.EventDate).format("MM/DD/YYYY")}</th>
-                  <td>{t.Type}</td>
-                  <td>{t.WaterChgAmt}</td>
-                  <td>{t.Comments}</td>
-                  <td>
-                    <FontAwesomeIcon
-                      icon={faPenToSquare}
-                      id={t.EventID}
-                      onClick={(e) => editEventByID(t.EventID)}
-                    />
-                    &nbsp;&nbsp;
-                    <FontAwesomeIcon
-                      id={t.EventID}
-                      icon={faTrashCan}
-                      onClick={(e) => deleteEventById(t.EventID)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
     </Layout>
   );

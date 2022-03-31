@@ -25,7 +25,16 @@ const getEventsByTankID = (tankID) => {
   }
 };
 
+const getAllEvents = () => {
+  try {
+    return db.any(`SELECT * from "Event" ORDER BY "EventDate" DESC`, []);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 module.exports = {
   addEvent,
   getEventsByTankID,
+  getAllEvents,
 };

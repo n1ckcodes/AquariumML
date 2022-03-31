@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { addEvent, getEventsByTankID } from "../db/eventQueries";
+import { addEvent, getEventsByTankID, getAllEvents } from "../db/eventQueries";
 import dayjs from "dayjs";
 
 const handler = nc({
@@ -34,8 +34,16 @@ handler.get("/api/event/tank/:id", (req, res) => {
   });
 });
 
+handler.get("/api/event/all", (req, res) => {
+  console.log("here");
+  return getAllEvents().then((response) => {
+    return res.send(response);
+  });
+});
+
 //TODO: set up default route handling
 handler.get((req, res, next) => {
+  console.log("here lol");
   console.log(req.url);
   const { method } = req;
 
