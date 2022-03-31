@@ -31,6 +31,16 @@ export default function TankThumbnail(props) {
                 </tr>
               </thead>
               <tbody>
+                <td>
+                  {" "}
+                  <button class="btn btn-sm btn-wide btn-outline">
+                    Add maintenance
+                  </button>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 {props.events.map((t) => (
                   <tr class="hover">
                     <th>{dayjs(t.EventDate).format("MM/DD/YYYY")}</th>

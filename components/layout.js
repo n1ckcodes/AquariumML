@@ -5,7 +5,7 @@ import Header from "./header";
 export default function Layout({ children }) {
   return (
     <>
-      <div class="w-full h-full">
+      <div class="w-full h-full overflow-auto">
         <Header />
         <div class="grid grid-cols-12 h-4/5">
           <nav class="col-span-2">
