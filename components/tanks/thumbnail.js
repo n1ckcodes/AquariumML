@@ -6,7 +6,7 @@ import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 export default function TankThumbnail(props) {
   console.log(props);
   return (
-    <div class="mb-10 w-10/12 border rounded-lg inline-block border-1 border-black hover:cursor-pointer p-5 hover:bg-teal-700">
+    <div class="mb-10 w-10/12 border rounded-lg inline-block border-1 border-black hover:cursor-pointer p-5">
       <div tabindex="0" class="collapse">
         <input type="checkbox" class="peer" />
         <div class="collapse-title  text-primary-content  peer-checked:text-secondary-content">
@@ -64,6 +64,10 @@ export default function TankThumbnail(props) {
                 ))}
               </tbody>
             </table>
+            <div class="mt-10 btn-group grid grid-cols-12">
+              <button class="btn btn-outline ">Previous</button>
+              <button class="btn btn-outline">Next</button>
+            </div>
           </div>
         </div>
       </div>
